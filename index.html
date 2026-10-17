@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Chat sencillo para reformular y revisar patrones de escritura.">
+  <title>Texto Claro</title>
+  <link rel="stylesheet" href="app.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <h1 class="brand"><span class="mascot" aria-hidden="true"></span> Texto Claro</h1>
+    </header>
+
+    <section id="chat-view">
+      <div class="layout">
+        <section class="card" aria-label="Chat de texto">
+          <div class="workspace">
+            <div class="chat-log" id="chat-log" role="log" aria-live="polite" aria-label="Conversación">
+              <div class="message assistant">Pega tu texto y elige.</div>
+            </div>
+            <div class="composer">
+              <label for="chat-input">Tu texto</label>
+              <textarea id="chat-input" placeholder="Escribe o pega tu texto..." maxlength="18000"></textarea>
+              <div class="meta"><span>El texto se analiza en este navegador.</span><span id="word-count">0 palabras</span></div>
+              <div class="actions input-tools" aria-label="Opciones de entrada">
+                <button class="action secondary" id="paste-button" type="button">Pegar texto</button>
+                <button class="action secondary" id="upload-button" type="button">Subir .txt</button>
+                <button class="action secondary" id="example-button" type="button">Probar ejemplo</button>
+                <input id="file-input" type="file" accept=".txt,text/plain" hidden>
+              </div>
+              <div class="actions">
+                <button class="action" id="analyze-button" type="button">Detectar IA</button>
+                <button class="action secondary" id="rewrite-button" type="button">Parafrasear</button>
+                <button class="action secondary" id="clear-button" type="button">Limpiar chat</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <aside class="card results score-panel" aria-label="Nivel de IA estimado">
+          <div class="results-heading">
+            <div>
+              <h2>Detección de IA</h2>
+              <p>Estimación local de patrones de escritura</p>
+            </div>
+            <span class="tag">Estimación</span>
+          </div>
+          <section class="score-card" aria-label="Porcentaje estimado">
+            <div class="score-top">
+              <h3>Señales compatibles con IA (estimación)</h3>
+              <span class="score" id="home-ai-score">0%</span>
+            </div>
+            <div class="score-bar" role="progressbar" aria-label="Nivel estimado de IA" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="home-score-bar"><span id="home-score-fill"></span></div>
+            <p class="verdict" id="home-verdict" aria-live="polite">El veredicto aparecerá aquí cuando revises un texto.</p>
+          </section>
+          <p class="disclaimer">Los porcentajes son una heurística, no una prueba de autoría ni una detección real de IA.</p>
+        </aside>
+      </div>
+      <section class="card home-details" aria-labelledby="home-details-title">
+        <div class="results-heading">
+          <div>
+            <h2 id="home-details-title">Análisis y resultados</h2>
+            <p>El resumen y las señales revisadas aparecerán aquí.</p>
+          </div>
+          <button class="action secondary" id="export-button" type="button">Exportar PDF</button>
+        </div>
+        <div class="home-details-grid">
+          <section>
+            <h3 class="section-title">Observaciones</h3>
+            <p class="status-message" id="home-analysis-summary" aria-live="polite">Aún no hay observaciones. Pega un texto y pulsa “Detectar IA”.</p>
+          </section>
+          <section>
+            <h3 class="section-title">Señales revisadas</h3>
+            <ul class="checks">
+              <li>Uniformidad en la longitud de las oraciones</li>
+              <li>Repetición de palabras y frases</li>
+              <li>Diversidad de vocabulario</li>
+            </ul>
+          </section>
+          <section>
+            <h3 class="section-title">Desglose por modelo</h3>
+            <div class="model-list" aria-label="Desglose de modelos">
+              <div class="model-row"><span>GPT</span><span class="model-value">Sin conexión</span></div>
+              <div class="model-row"><span>Claude</span><span class="model-value">Sin conexión</span></div>
+              <div class="model-row"><span>Gemini</span><span class="model-value">Sin conexión</span></div>
+              <div class="model-row"><span>Otros detectores</span><span class="model-value">Sin conexión</span></div>
+            </div>
+          </section>
+        </div>
+        <p class="disclaimer">Este prototipo no consulta Turnitin, ZeroGPT, GPTZero ni otros detectores externos. El resultado local es orientativo, no una probabilidad ni una prueba de autoría.</p>
+      </section>
+      <p class="note">La paráfrasis básica puede cambiar matices; revisa el resultado y cita tus fuentes cuando corresponda.</p>
+    </section>
+  </main>
+</body>
+</html>
